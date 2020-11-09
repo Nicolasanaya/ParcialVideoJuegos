@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Fondo
+    uniqueID: 2035711077
+    locked: 0
+  - name: PrimerNvl
+    uniqueID: 2450444151
+    locked: 0
+  - name: SegundoNvl
+    uniqueID: 193662197
+    locked: 0
+  - name: NvlJugadorEnemigos
+    uniqueID: 210110383
+    locked: 0
