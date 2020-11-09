@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Jugador : MonoBehaviour
 {
@@ -24,6 +23,10 @@ public class Jugador : MonoBehaviour
     [SerializeField] private GameObject jugadorSano;
     [SerializeField] private GameObject jugadorEnfermo;
     [SerializeField] private GameObject jugadorProtegido;
+    [SerializeField] private TextMeshProUGUI txtGanaste;
+    [SerializeField] private TextMeshProUGUI txtPerdiste;
+    [SerializeField] private Button btnReset;
+
     private float virusTomados, proteccion = 2;
     private bool banderaEnfermo = false, banderaProtegido = false;
 
@@ -33,6 +36,7 @@ public class Jugador : MonoBehaviour
     void Start()
     {
         jugador = GetComponent<Rigidbody2D>();
+        Time.timeScale = 1;
     }
 
     private void FixedUpdate()
@@ -65,7 +69,10 @@ public class Jugador : MonoBehaviour
         }
         else if (virusTomados.Equals(2))
         {
-            print("El maricon se murio");
+            txtPerdiste.enabled = true;
+            btnReset.enabled = true;
+            btnReset.image.enabled = true;
+            Time.timeScale = 0;
         }
         else if (proteccion.Equals(0) && banderaProtegido.Equals(true))
         {
@@ -239,7 +246,15 @@ public class Jugador : MonoBehaviour
 
         if (collision.collider.name.Equals("Casa"))
         {
-            print("Ganaste");
+            txtGanaste.enabled = true;
+            btnReset.enabled = true;
+            btnReset.image.enabled = true;
+            Time.timeScale = 0;
         }
+    }
+
+    public void Resetear()
+    {
+        SceneManager.LoadScene("Scene2");
     }
 }
